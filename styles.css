@@ -278,6 +278,8 @@ nav.show div.icon-close {
 #home .image img,
 #home .image::before {
   border-radius: 0.25rem;
+  width: 445px;
+  height: 224px;
 }
 
 #home .image img {
@@ -291,7 +293,7 @@ nav.show div.icon-close {
   text-align: center;
 }
 
-#home .text h1 {
+#home .text h2 {
   margin-bottom: 1rem;
 }
 #home .text p {
@@ -320,6 +322,11 @@ nav.show div.icon-close {
   z-index: 0;
 }
 
+#about img {
+  width: 100%;
+  height: 224px;
+}
+
 #about .image img {
   position: relative;
 }
@@ -332,10 +339,18 @@ nav.show div.icon-close {
 #about .text {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+  text-align: center;
+}
+
+#about .text p {
   text-align: justify;
 }
 
 /* ======== SERVICES ======== */
+
+#occupation {
+  text-align: center;
+}
 
 .cards.grid {
   gap: 1.5rem;
@@ -347,6 +362,10 @@ nav.show div.icon-close {
   border-bottom: 0.25rem solid var(--base-color);
   border-radius: 0.25rem 0.25rem 0 0;
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card p {
@@ -357,6 +376,14 @@ nav.show div.icon-close {
   display: block;
   margin-bottom: 1.5rem;
   font-size: 5rem;
+  color: var(--base-color);
+}
+
+.card img {
+  display: block;
+  margin-bottom: 1.5rem;
+  width: 8rem;
+  height: auto;
   color: var(--base-color);
 }
 
@@ -380,6 +407,7 @@ nav.show div.icon-close {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   margin-bottom: 0;
+  text-align: center;
 }
 
 #team .team {
@@ -430,6 +458,7 @@ nav.show div.icon-close {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   margin-bottom: 0;
+  text-align: center;
 }
 
 #testimonials blockquote {
@@ -494,6 +523,7 @@ nav.show div.icon-close {
 
 #contact .text p {
   margin-bottom: 2rem;
+  text-align: justify;
 }
 
 #contact .button i,
@@ -515,5 +545,5 @@ nav.show div.icon-close {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: justify;
+  text-align: center;
 }
