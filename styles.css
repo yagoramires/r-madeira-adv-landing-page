@@ -1,20 +1,24 @@
 /* ======== RESET ======== */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-}
-
 ul {
   list-style: none;
 }
 
-/* ======== VARIÁVEIS ======== */
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* ======== VARIABLES ======== */
 :root {
   --header-height: 4.5rem;
 
@@ -28,6 +32,13 @@ ul {
   --text-color: hsl(0 0% 46%);
   --text-color-light: hsl(0 0% 98%);
   --body-color: hsl(0 0% 98%);
+
+  /* TEXT */
+  --title-font-size: 1.875rem;
+  --subtitle-font-size: 1rem;
+
+  --title-font: 'Poppins', sans-serif;
+  --body-font: 'DM Sans', sans-serif;
 }
 
 /* ======== BASE ======== */
@@ -36,18 +47,18 @@ html {
 }
 
 body {
-  font: 400 1rem 'DM Sans', sans-serif;
+  font: 400 1rem var(--body-font);
   color: var(--text-color);
   background: var(--body-color);
   -webkit-font-smoothing: antialiased;
 }
 
 .title {
-  font: 700 1.875rem 'Poppins', sans-serif;
+  font: 700 var(--title-font-size) var(--title-font);
   color: var(--title-color);
   -webkit-font-smoothing: auto;
-  margin-bottom: 1rem;
 }
+
 .button {
   background-color: var(--base-color);
   color: var(--text-color-light);
@@ -56,6 +67,7 @@ body {
   align-items: center;
   padding: 0 2rem;
   border-radius: 0.25rem;
+  font: 500 1rem var(--body-font);
   transition: background 0.3s;
 }
 
@@ -94,7 +106,16 @@ body {
 }
 
 .section {
-  padding: 5rem 0;
+  padding: calc(5rem + var(--header-height)) 0;
+}
+
+.section .title {
+  margin-bottom: 1rem;
+}
+
+.section .subtitle {
+  font-size: var(--subtitle-font-size);
+  text-align: justify;
 }
 
 .section header {
@@ -111,41 +132,31 @@ body {
   margin-bottom: 2rem;
   display: flex;
 
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
   background-color: var(--body-color);
+  width: 100%;
 }
 
 #header.scroll {
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
 }
 
-header p {
-  text-align: justify;
-}
-
-main {
-  margin-top: calc(var(--header-height) + 2rem);
-}
-
-main section div .image .img-home {
-  width: 335, 92;
-  height: 224, 32;
-}
-
 /* ======== LOGO ======== */
-
 .logo {
-  font: 700 1.31rem 'Poppins', sans-serif;
+  font: 700 1.31rem var(--title-font);
   text-transform: uppercase;
   color: var(--title-color);
 }
 
 .logo span {
   color: var(--base-color);
+}
+
+.logo-alt span {
+  color: var(--body-color);
 }
 
 /* ======== NAV MENU ======== */
@@ -166,7 +177,8 @@ nav ul li a {
   transition: color 0.3s;
   position: relative;
 }
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a.active {
   color: var(--base-color);
 }
 
@@ -177,14 +189,14 @@ nav ul li a::after {
   background: var(--base-color);
 
   position: absolute;
-
   left: 0;
   bottom: -1.5rem;
 
   transition: width 0.3s;
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active::after {
   width: 100%;
 }
 
@@ -206,6 +218,7 @@ nav.show .menu {
   visibility: visible;
 
   background: var(--body-color);
+
   height: 100vh;
   width: 100vw;
 
@@ -252,7 +265,6 @@ nav.show div.icon-close {
 /* ======== HOME ======== */
 
 #home {
-  margin: 0;
   overflow: hidden;
 }
 
@@ -275,16 +287,14 @@ nav.show div.icon-close {
   z-index: 0;
 }
 
-#home .image img,
-#home .image::before {
-  border-radius: 0.25rem;
-  width: 445px;
-  height: 224px;
-}
-
 #home .image img {
   position: relative;
   right: 2.93rem;
+}
+
+#home .image img,
+#home .image::before {
+  border-radius: 0.25rem;
 }
 
 #home .text {
@@ -295,13 +305,21 @@ nav.show div.icon-close {
 
 #home .text h2 {
   margin-bottom: 1rem;
+  text-align: center;
 }
 #home .text p {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: justify;
 }
 
+#home .button {
+  margin-top: 1rem;
+}
+
 /* ======== ABOUT ======== */
+#about {
+  background: white;
+}
 
 #about .container {
   margin: 0;
@@ -309,6 +327,7 @@ nav.show div.icon-close {
 
 #about .image {
   position: relative;
+  display: none;
 }
 
 #about .image::before {
@@ -320,11 +339,7 @@ nav.show div.icon-close {
   top: -8.3%;
   left: -33%;
   z-index: 0;
-}
-
-#about img {
-  width: 100%;
-  height: 224px;
+  display: none;
 }
 
 #about .image img {
@@ -346,9 +361,8 @@ nav.show div.icon-close {
   text-align: justify;
 }
 
-/* ======== SERVICES ======== */
-
-#occupation {
+/* ======== SERVICES//OCCUPATION ======== */
+#occupation header {
   text-align: center;
 }
 
@@ -368,15 +382,20 @@ nav.show div.icon-close {
   align-items: center;
 }
 
-.card p {
-  text-align: justify;
-}
-
 .card i {
   display: block;
   margin-bottom: 1.5rem;
   font-size: 5rem;
   color: var(--base-color);
+}
+
+.card p {
+  text-align: justify;
+}
+
+.card .title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .card img {
@@ -387,13 +406,7 @@ nav.show div.icon-close {
   color: var(--base-color);
 }
 
-.card .title {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
 /* ======== TEAM ======== */
-
 #team {
   background: white;
 }
@@ -410,24 +423,17 @@ nav.show div.icon-close {
   text-align: center;
 }
 
-#team .team {
+#team .member div {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
   border-bottom: 0.25rem solid var(--base-color);
   border-radius: 0.25rem 0.25rem 0 0;
   text-align: center;
 }
 
-#team .member {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-}
-
-#team p {
+#team .member div p {
   text-align: justify;
 }
 
@@ -478,7 +484,6 @@ nav.show div.icon-close {
 #testimonials blockquote p span {
   font: 700 2.5rem serif;
   position: absolute;
-
   top: -0.5rem;
   left: -1.875rem;
   color: var(--base-color);
@@ -488,7 +493,6 @@ nav.show div.icon-close {
   display: flex;
   align-items: center;
   font-style: normal;
-  color: var(text-color);
 }
 
 #testimonials cite img {
@@ -546,4 +550,233 @@ nav.show div.icon-close {
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+/* ======== FOOTER ======== */
+
+footer {
+  background: var(--base-color);
+}
+
+footer.section {
+  padding: 4rem 0;
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+footer .brand p {
+  color: var(--text-color-light);
+  margin-bottom: 0.75rem;
+  text-align: justify;
+  align-items: center;
+}
+
+footer .brand p a {
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--text-color-light);
+  align-items: center;
+  display: inline-flex;
+}
+
+footer i {
+  font-size: 1.5rem;
+  color: var(--text-color-light);
+}
+
+footer .social {
+  display: flex;
+  gap: 2rem;
+}
+
+footer .social a {
+  margin-right: 2rem;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+footer .social a:hover {
+  transform: translateY(-5px);
+}
+
+/* ======== BACK TO TOP ======== */
+
+.back-to-top {
+  background: var(--base-color);
+  color: var(--text-color-light);
+
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+
+  padding: 0.5rem;
+  clip-path: circle();
+
+  font-size: 1.5rem;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: 0.3s;
+  transform: translateY(100%);
+}
+
+.back-to-top.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVO */
+@media (min-width: 1200px) {
+  /* REUSABLE CLASSES */
+  :root {
+    /* TEXT */
+    --title-font-size: 21.875rem;
+    --subtitle-font-size: 11rem;
+  }
+
+  .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section {
+    padding: 10rem 0;
+  }
+
+  .section header,
+  #testimonials header,
+  #team header {
+    max-width: 32rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .button {
+    height: 3.125rem;
+  }
+  /* NAVIGATION */
+
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul {
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav .menu ul li a.title {
+    font: 400 1rem var(--body-font);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav .menu ul li a.title.active {
+    font-weight: bold;
+    -webkit-font-smoothing: auto;
+  }
+
+  nav .icon-menu {
+    display: none;
+  }
+
+  /* LAYOUT */
+
+  main {
+    margin-top: var(--header-height);
+  }
+
+  /* HOME*/
+
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  #home .image {
+    order: 1;
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 48rem;
+    text-align: left;
+  }
+
+  /* ABOUT */
+
+  #about .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+  #about .image::before,
+  #about img {
+    display: none;
+  }
+
+  /* SERVICES */
+
+  #occupation header {
+    max-width: 1120px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .card {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  /* TEAM, TESTIMONIALS */
+
+  #team .container,
+  #testimonials .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* CONTACT */
+
+  #contact .container {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+
+  #contact .text {
+    max-width: 48rem;
+  }
+
+  /* FOOTER */
+
+  footer.section {
+    padding: 3.75rem 0;
+  }
+
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .logo {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 992px) {
+  :root {
+    --title-font-size: 2.25rem;
+    --subtitle-font-size: 1.125rem;
+  }
 }
